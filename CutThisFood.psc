@@ -31,7 +31,7 @@ Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjecti
 
 	EndIf
 
-    GoToState("")
+	GoToState("")
 EndEvent
 
 State Busy
