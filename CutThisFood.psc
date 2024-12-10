@@ -40,10 +40,8 @@ State Busy
 EndState
 
 FormList Function CTF_FindMatchingFormList(ObjectReference akTarget, FormList masterList)
-    
 	int masterListSize = masterList.GetSize()
 	int i = 0
-
 	Form akFood = akTarget.GetBaseObject() as Form
 
 	While i < masterListSize
@@ -62,7 +60,6 @@ FormList Function CTF_FindMatchingFormList(ObjectReference akTarget, FormList ma
 EndFunction
 
 Function CTF_ReplaceObject(ObjectReference akTarget, FormList matchedFormList)
-
     int listSize = matchedFormList.GetSize()
     int i = 2
 
