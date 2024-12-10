@@ -8,7 +8,7 @@ FormList Property CTF_FoodLists Auto
 Bool shouldDouble = False
 
 Event OnInit()
-  PO3_Events_Alias.RegisterForWeaponHit(self)
+	PO3_Events_Alias.RegisterForWeaponHit(self)
 EndEvent
 
 Event OnPlayerLoadGame()
@@ -25,9 +25,9 @@ Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjecti
 	If akTarget.HasKeyword(CTF_Food) && akSource.HasKeyword(CTF_Weapons)
 		FormList matchedFormList = CTF_FindMatchingFormList(akTarget, CTF_FoodLists)
 		
-    If matchedFormList
-      CTF_ReplaceObject(akTarget, matchedFormList)
-    EndIf
+	        If matchedFormList
+			CTF_ReplaceObject(akTarget, matchedFormList)
+	        EndIf
 
 	EndIf
 
@@ -41,44 +41,44 @@ EndState
 
 FormList Function CTF_FindMatchingFormList(ObjectReference akTarget, FormList masterList)
     
-  int masterListSize = masterList.GetSize()
-  int i = 0
+	int masterListSize = masterList.GetSize()
+	int i = 0
 
 	Form akFood = akTarget.GetBaseObject() as Form
 
-  While i < masterListSize
-    FormList currentList = masterList.GetAt(i) as FormList
+	While i < masterListSize
+		FormList currentList = masterList.GetAt(i) as FormList
 
-    If currentList
+		If currentList
 			If currentList.HasForm(akFood)
-        return currentList
+				return currentList
 			EndIf
-    EndIf
+        	EndIf
 
-    i += 1
-  EndWhile
+        	i += 1
+    	EndWhile
 
-  Return None
+    	Return None
 EndFunction
 
 Function CTF_ReplaceObject(ObjectReference akTarget, FormList matchedFormList)
 
-  int listSize = matchedFormList.GetSize()
-  int i = 2
+    int listSize = matchedFormList.GetSize()
+    int i = 2
 
-  While i < listSize
-    Form remnant = matchedFormList.GetAt(i) as Form
+    While i < listSize
+        Form remnant = matchedFormList.GetAt(i) as Form
 
-    If remnant && shouldDouble
-      akTarget.PlaceAtMe(remnant, 2)
-		Elseif remnant && !shouldDouble
-			akTarget.PlaceAtMe(remnant, 1)
-    EndIf
+        If remnant && shouldDouble
+        	akTarget.PlaceAtMe(remnant, 2)
+	Elseif remnant && !shouldDouble
+		akTarget.PlaceAtMe(remnant, 1)
+        EndIf
 
-    i += 1
-  EndWhile
+        i += 1
+    EndWhile
 
-	  shouldDouble = False
+    shouldDouble = False
     akTarget.Disable()
     akTarget.Delete()
 
