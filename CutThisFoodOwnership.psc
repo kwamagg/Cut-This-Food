@@ -11,11 +11,11 @@ Faction Property ownerFaction = None Auto
 Bool shouldDouble = False
 
 Event OnInit()
-	  PO3_Events_Alias.RegisterForWeaponHit(self)
+    PO3_Events_Alias.RegisterForWeaponHit(self)
 EndEvent
 
 Event OnPlayerLoadGame()
-	  PO3_Events_Alias.RegisterForWeaponHit(self)
+    PO3_Events_Alias.RegisterForWeaponHit(self)
 EndEvent
 
 Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjectile, Int aiHitFlagMask)
@@ -40,22 +40,22 @@ Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjecti
 EndEvent
 
 State Busy
-	  Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjectile, Int aiHitFlagMask)
-	  EndEvent
+    Event OnWeaponHit(ObjectReference akTarget, Form akSource, Projectile akProjectile, Int aiHitFlagMask)
+    EndEvent
 EndState
 
 FormList Function CTF_FindMatchingFormList(ObjectReference akTarget, FormList masterList)
     int masterListSize = masterList.GetSize()
     int i = 0
-	  Form akFood = akTarget.GetBaseObject() as Form
+    Form akFood = akTarget.GetBaseObject() as Form
 
     While i < masterListSize
         FormList currentList = masterList.GetAt(i) as FormList
 
         If currentList
-			      If currentList.HasForm(akFood)
+	    If currentList.HasForm(akFood)
                 return currentList
-			      EndIf
+	    EndIf
         EndIf
 
         i += 1
@@ -72,8 +72,8 @@ Function CTF_ReplaceObject(ObjectReference akTarget, FormList matchedFormList)
 
         If remnant && shouldDouble
             akTarget.PlaceAtMe(remnant, 2)
-		    ElseIf remnant && !shouldDouble
-			      akTarget.PlaceAtMe(remnant, 1)
+	ElseIf remnant && !shouldDouble
+	    akTarget.PlaceAtMe(remnant, 1)
         EndIf
 
         If ownerActor == !None
